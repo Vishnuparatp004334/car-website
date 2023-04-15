@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+        :root {
+            --yellow: #f9d806;
+            --light-yellow: #ffee80;
+            --black: #130f40;
+            --light-color: #666;
+            --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+            --border: .1rem solid rgba(0, 0, 0, .1);
+        }
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            text-transform: capitalize;
+            transition: .2s linear;
+
+        }
+
+        html {
+            font-size: 62.5%;
+            overflow-x: hidden;
+            scroll-padding-top: 7rem;
+            scroll-behavior: smooth;
+        }
+
+        #menu-btn {
+            display: none;
+            color: var(--light-color);
+            font-size: 2.5rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem 9%;
+            z-index: 1000;
+            background: #fff;
+        }
+
+        .header .logo {
+            font-size: 2.5rem;
+            color: var(--black);
+            font-weight: bold;
+        }
+
+        .header .logo span {
+            color: var(--yellow);
+        }
+
+        .header .navbar a {
+            margin: 0 1rem;
+            font-size: 1.7rem;
+            color: var(--black);
+        }
+
+        .header .navbar a:hover {
+            color: var(--yellow);
+        }
+
+        #login-btn .btn {
+            margin-top: 0;
+        }
+
+        #login-btn i {
+            display: none;
+            font-size: 2.5rem;
+            color: var(--light-color);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: .8rem 3rem;
+            background: var(--light-yellow);
+            color: var(--black);
+            cursor: pointer;
+            font-size: 1.7rem;
+            border-radius: .5rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        section {
+            padding: 2rem 9%;
+        }
+
+        .home {
+            padding-top: 10rem;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .home h3 {
+            color: var(--black);
+            font-size: 7.5vw;
+            text-transform: uppercase;
+        }
+
+        .home img {
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        .icons-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+            gap: 1.5rem;
+            background: #eee;
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+
+        .icons-container .icons {
+            background: #fff;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 2rem;
+            border-radius: .5rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .icons-container .icons i {
+            height: 5rem;
+            width: 5rem;
+            background: #eee;
+            line-height: 5rem;
+            text-align: center;
+            /* border: 2px solid black; */
+            border-radius: 50%;
+            font-size: 2.5rem;
+            color: var(--black);
+        }
+
+        .icons-container .icons .content h3 {
+            font-size: 2.5rem;
+            color: var(--yellow);
+        }
+
+        .icons-container .icons .content p {
+            font-size: 1.5rem;
+            color: var(--light-color);
+        }
+
+        .icons-container .icons:hover {
+            background: var(--black);
+        }
+
+        .icons-container .icons:hover i {
+            background: var(--yellow);
+        }
+
+        .icons-container .icons:hover .content h3 {
+            color: #fff;
+        }
+
+        .icons-container .icons:hover .content p {
+            color: #eee;
+        }
+
+        .heading {
+            padding-bottom: 2rem;
+            text-align: center;
+            font-size: 4.5rem;
+            color: var(--black);
+        }
+
+        .heading span {
+            position: relative;
+            z-index: 0;
+        }
+
+        .vehicles .vehicles-slider {
+            padding-bottom: 5rem;
+        }
+
+        .vehicles .vehicles-slider .box {
+            text-align: center;
+        }
+
+        .vehicles .vehicles-slider .box img {
+            width: 100%;
+            transform: scale(.8);
+            opacity: .5;
+        }
+
+        .vehicles .vehicles-slider .box .content {
+            padding-top: 1rem;
+            transform: scale(0);
+        }
+
+        .vehicles .vehicles-slider .swiper-slide-active .content {
+            transform: scale(1);
+        }
+
+        .vehicles .vehicles-slider .swiper-slide-active img {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .vehicles .vehicles-slider .box .content h3 {
+            font-size: 2.5rem;
+            color: var(--black);
+        }
+
+        .vehicles .vehicles-slider .box .content .price {
+            font-size: 2.2rem;
+            color: var(--yellow);
+            padding: 1rem 0;
+            font-weight: bolder;
+        }
+
+        .vehicles .vehicles-slider .box .content .price span {
+            color: var(--light-color);
+            font-size: 1.5rem;
+            font-weight: normal;
+        }
+
+        .vehicles .vehicles-slider .box .content p {
+            font-size: 1.6rem;
+            color: var(--light-color);
+            padding: 1rem 0;
+            padding-top: 1.5rem;
+            border-top: var(--border);
+        }
+
+        .vehicles .vehicles-slider .box .content span {
+            font-size: 1rem;
+            color: var(--light-yellow);
+            padding: 0 .5rem;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--yellow);
+        }
+
+        .services .box-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+            gap: 1.5rem;
+        }
+
+        .services .box-container .box {
+            text-align: center;
+            /* background: red; */
+            padding: 2rem;
+            border: var(--border);
+            box-shadow: var(--box-shadow);
+        }
+
+        .services .box-container .box i {
+            height: 6rem;
+            width: 6rem;
+            background: var(--yellow);
+            line-height: 6rem;
+            font-size: 2.5rem;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .services .box-container .box h3 {
+            font-size: 2.2rem;
+            color: var(--black);
+        }
+
+        .services .box-container .box p {
+            line-height: 1.8rem;
+            padding: 1rem 0;
+            font-size: 1.4rem;
+            color: var(--light-color);
+        }
+
+        .services .box-container .box:hover {
+            background: var(--black);
+        }
+
+        .services .box-container .box:hover h3 {
+            color: #fff;
+        }
+
+        .services .box-container .box:hover p {
+            color: #eee;
+        }
+
+        .featured .featured-slider {
+            padding: 1rem;
+            padding-bottom: 4rem;
+        }
+
+        .featured .featured-slider .box {
+            padding: 2rem;
+            /* background: red; */
+            text-align: center;
+            border: var(--border);
+            box-shadow: var(--box-shadow);
+            border-radius: .5rem;
+
+        }
+
+        .featured .featured-slider .box img {
+            height: 15rem;
+        }
+
+        .featured .featured-slider .box:hover img {
+            transform: scale(.9);
+        }
+
+        .featured .featured-slider .box .content h3 {
+            font-size: 2.2rem;
+            color: var(--black);
+        }
+
+        .featured .featured-slider .box .content .stars {
+            padding: 1rem 0;
+        }
+
+        .featured .featured-slider .box .content .stars i {
+            font-size: 1.7rem;
+            color: var(--yellow);
+        }
+
+        .featured .featured-slider .box .content .price {
+            font-size: 2.5rem;
+            color: var(--black);
+        }
+
+        .newsletter {
+            background: url(../image/letter-bg.png) no-repeat;
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .newsletter h3 {
+            font-size: 3rem;
+            color: var(--black);
+        }
+
+        .newsletter p {
+            font-size: 1.5rem;
+            color: var(--light-color);
+            padding: 1rem 0;
+        }
+
+        .newsletter form {
+            max-width: 60rem;
+            background: #fff;
+            height: 5rem;
+            display: flex;
+            margin: 1rem auto;
+            overflow: hidden;
+            border-radius: 5rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .newsletter form input[type="email"] {
+            height: 100%;
+            width: 100%;
+            padding: 0 2rem;
+            font-size: 1.6rem;
+            color: var(--black);
+            text-transform: none;
+        }
+
+        .newsletter form input[type="submit"] {
+            height: 100%;
+            width: 17rem;
+            background: var(--yellow);
+            font-size: 1.7rem;
+            color: var(--black);
+            cursor: pointer;
+        }
+        .reviews .review-slider{
+            padding-bottom: 3rem;
+        }
+        .reviews .review-slider .box{
+            text-align: center;
+            /* background: red; */
+            padding: 2rem;
+            margin: 2rem 0;
+            transform: scale(.7);
+            opacity: .4;
+        }
+        .reviews .review-slider .swiper-slide-active{
+            opacity: 1;
+            transform: scale(1);
+            box-shadow: var(--box-shadow);
+            border: var(--border);
+            border-radius: .5rem;
+        }
+        .reviews .review-slider .box img{
+            height: 7rem;
+            width: 7rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .reviews .review-slider .box .content p{
+            color: var(--light-color);
+            font-size: 1.4rem;
+            padding: 1rem 0;
+        }
+        .reviews .review-slider .box .content h3{
+            color: var(--black);
+            font-size: 2.2rem;
+            padding-bottom: .5rem;
+        }
+        .reviews .review-slider .box .content .stars i{
+            color: var(--yellow);
+            font-size: 1.7rem;
+        }
+        .contact .row{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .contact .row .map{
+            /* background: red; */
+            flex: 1 1 42rem;
+            width: 100%;
+            padding: 2rem;
+            border: var(--border);
+            box-shadow: var(--box-shadow);
+            border-radius: .5rem;
+
+        }
+        .contact .row form{
+            /* background: green; */
+            flex: 1 1 42rem;
+            box-shadow: var(--box-shadow);
+            border: var(--border);
+            text-align: center;
+            border-radius: .5rem;
+            padding: 2rem;
+        }
+        .contact .row form h3{
+            font-size: 3rem;
+            color: var(--black);
+            padding-bottom: 1rem;
+        }
+        .contact .row form .box{
+            width: 100%;
+            /* background: red; */
+            padding: 1rem 1.2rem;
+            margin: .7rem 0;
+            border-radius: .5rem;
+            font-size: 1.6rem;
+            text-transform: none;
+            border: var(--border);
+        }
+        .contact .row form textarea{
+            height: 15rem;
+            resize: none;
+        }
+        .footer{
+            background: var(--light-color);
+            padding-bottom: 6rem;
+        }
+        .footer .box-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+            gap: 1.5rem;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="header">
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+        <a href="#" class="logo"><span>max</span>wheels</a>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#vehicles">vehicles</a>
+            <a href="#services">services</a>
+            <a href="#featured">featured</a>
+            <a href="#reviews">reviews</a>
+            <a href="#contact">contact</a>
+        </nav>
+
+        <div id="login-btn">
+            <bttons class="btn">login</bttons>
+            <i class="far fa-user"></i>
+        </div>
+    </header>
+
+    <section class="home" id="home">
+
+        <h3 class="home-parallax">find your car</h3>
+        <img class="home-parallax" src="image/home-img.png" alt="">
+        <a href="#" class="btn home-parallax">explore cars</a>
+    </section>
+
+    <section class="icons-container">
+
+        <div class="icons">
+            <i class="fas fa-home"></i>
+            <div class="content">
+                <h3>150+</h3>
+                <p>branches</p>
+            </div>
+        </div>
+        <div class="icons">
+            <i class="fas fa-car"></i>
+            <div class="content">
+                <h3>5550+</h3>
+                <p>cars sold</p>
+            </div>
+        </div>
+        <div class="icons">
+            <i class="fas fa-users"></i>
+            <div class="content">
+                <h3>570+</h3>
+                <p>happy clients</p>
+            </div>
+        </div>
+        <div class="icons">
+            <i class="fas fa-car"></i>
+            <div class="content">
+                <h3>1250+</h3>
+                <p>news cars</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="vehicles" id="vehicles">
+
+        <h1 class="heading"> popular <span>vehicles</span></h1>
+
+        <div class="swiper vehicles-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <img src="image/vehicle-1.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="price"><span>price : </span> $74,000/-</div>
+                        <p>
+                            new
+                            <span class="fas fa-circle"></span>2023
+                            <span class="fas fa-circle"></span>automatic
+                            <span class="fas fa-circle"></span>petrol
+                            <span class="fas fa-circle"></span>200mph
+                        </p>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/vehicle-2.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="price"><span>price : </span> $74,000/-</div>
+                        <p>
+                            new
+                            <span class="fas fa-circle"></span>2023
+                            <span class="fas fa-circle"></span>automatic
+                            <span class="fas fa-circle"></span>petrol
+                            <span class="fas fa-circle"></span>200mph
+                        </p>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/vehicle-3.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="price"><span>price : </span> $74,000/-</div>
+                        <p>
+                            new
+                            <span class="fas fa-circle"></span>2023
+                            <span class="fas fa-circle"></span>automatic
+                            <span class="fas fa-circle"></span>petrol
+                            <span class="fas fa-circle"></span>200mph
+                        </p>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/vehicle-4.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="price"><span>price : </span> $74,000/-</div>
+                        <p>
+                            new
+                            <span class="fas fa-circle"></span>2023
+                            <span class="fas fa-circle"></span>automatic
+                            <span class="fas fa-circle"></span>petrol
+                            <span class="fas fa-circle"></span>200mph
+                        </p>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/vehicle-5.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="price"><span>price : </span> $74,000/-</div>
+                        <p>
+                            new
+                            <span class="fas fa-circle"></span>2023
+                            <span class="fas fa-circle"></span>automatic
+                            <span class="fas fa-circle"></span>petrol
+                            <span class="fas fa-circle"></span>200mph
+                        </p>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/vehicle-6.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="price"><span>price : </span> $74,000/-</div>
+                        <p>
+                            new
+                            <span class="fas fa-circle"></span>2023
+                            <span class="fas fa-circle"></span>automatic
+                            <span class="fas fa-circle"></span>petrol
+                            <span class="fas fa-circle"></span>200mph
+                        </p>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    <section class="services" id="services">
+        <h1 class="heading">our <span>services</span></h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <i class="fas fa-car"></i>
+                <h3>car selling</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, totam?</p>
+                <a href="#" class="btn">read more</a>
+            </div>
+            <div class="box">
+                <i class="fas fa-tools"></i>
+                <h3>parts repair</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, totam?</p>
+                <a href="#" class="btn">read more</a>
+            </div>
+            <div class="box">
+                <i class="fas fa-car-crash"></i>
+                <h3>car insurance</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, totam?</p>
+                <a href="#" class="btn">read more</a>
+            </div>
+            <div class="box">
+                <i class="fas fa-car-battery"></i>
+                <h3>battery replacement</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, totam?</p>
+                <a href="#" class="btn">read more</a>
+            </div>
+            <div class="box">
+                <i class="fas fa-gas-pump"></i>
+                <h3>oil change</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, totam?</p>
+                <a href="#" class="btn">read more</a>
+            </div>
+            <div class="box">
+                <i class="fas fa-headset"></i>
+                <h3>24/7 support</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum, totam?</p>
+                <a href="#" class="btn">read more</a>
+            </div>
+        </div>
+    </section>
+    <section class="featured" id="featured">
+
+        <h1 class="heading"><span>featured</span> cars </h1>
+
+        <div class="swiper featured-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <img src="image/car-1.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="price">$64,515/-</div>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/car-2.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="price">$64,515/-</div>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/car-3.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="price">$64,515/-</div>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/car-4.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="price">$64,515/-</div>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="swiper featured-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <img src="image/car-5.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="price">$64,515/-</div>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/car-6.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="price">$64,515/-</div>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/car-7.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="price">$64,515/-</div>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/car-8.png" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="price">$64,515/-</div>
+                        <a href="#" class="btn">check out</a>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    <section class="newsletter">
+
+        <h3>subscribe fr the latest updates</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime, mollitia!</p>
+
+        <form action="">
+            <input type="email" placeholder="enter your email">
+            <input type="submit" value="subscribe">
+        </form>
+    </section>
+    <section class="reviews" id="reviews">
+
+        <h1 class="heading">client's <span>reviews</span></h1>
+
+        <div class="swiper review-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide box">
+                    <img src="image/pic-1.png" alt="">
+                    <div class="content">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, mollitia.</p>
+                        <h3>vishnu singh</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/pic-2.png" alt="">
+                    <div class="content">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, mollitia.</p>
+                        <h3>vishnu singh</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/pic-3.png" alt="">
+                    <div class="content">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, mollitia.</p>
+                        <h3>vishnu singh</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/pic-4.png" alt="">
+                    <div class="content">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, mollitia.</p>
+                        <h3>vishnu singh</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/pic-5.png" alt="">
+                    <div class="content">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, mollitia.</p>
+                        <h3>vishnu singh</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="image/pic-6.png" alt="">
+                    <div class="content">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate, mollitia.</p>
+                        <h3>vishnu singh</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    <section class="contact" id="contact">
+        <h1 class="heading"><span>contact</span> us </h1>
+
+        <div class="row">
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30153.788252261566!2d72.82321484621745!3d19.141690214227783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c69%3A0x2aa80cf2287dfa3b!2sJogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400047!5e0!3m2!1sen!2sin!4v1632137920043!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+
+            <form action="">
+                <h3>grt in touch</h3>
+                <input type="text" placeholder="your name" class="box">
+                <input type="email" placeholder="your email" class="box">
+                <input type="tel" placeholder="subject" class="box">
+                <textarea placeholder="your message" class="box" cols="30" rows="10"></textarea>
+                <input type="submit" value="send message" class="btn">
+            </form>
+        </div>
+    </section>
+    <section class="footer" id="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>our branches</h3>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> india </a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> japan </a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> france </a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> russia </a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> USA </a>
+            </div>
+
+            <div class="box">
+                <h3>quuick links</h3>
+                <a href="#"><i class="fas fa-arrow-right"></i> home </a>
+                <a href="#"><i class="fas fa-arrow-right"></i> vehicles </a>
+                <a href="#"><i class="fas fa-arrow-right"></i> services </a>
+                <a href="#"><i class="fas fa-arrow-right"></i> featured </a>
+                <a href="#"><i class="fas fa-arrow-right"></i> review </a>
+                <a href="#"><i class="fas fa-arrow-right"></i> contact </a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+                <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+                <a href="#"> <i class="fas fa-envelope"></i> vishnu@gmail.com </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> Robertsganj, india - 400104 </a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"><i class="fab fa-facebook-f"></i>facebook</a>
+                <a href="#"><i class="fab fa-twitter"></i>twitter</a>
+                <a href="#"><i class="fab fa-instagram"></i>instagram</a>
+                <a href="#"><i class="fab fa-linkdin"></i>linkedin</a>
+                <a href="#"><i class="fab fa-pinterest"></i>pinterest</a>
+            </div>
+        </div>
+        <div class="credit">created by mr. web designer | all right reserved</div>
+    </section>
+
+
+
+
+
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script>
+        console.log("vishnu");
+        var swiper = new Swiper(".vehicles-slider", {
+            grabCursor: true,
+            centeredSlides: true,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 9500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+        var swiper = new Swiper(".featured-slider", {
+            grabCursor: true,
+            centeredSlides: true,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 9500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+        var swiper = new Swiper(".review-slider", {
+            grabCursor: true,
+            centeredSlides: true,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 9500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+    </script>
+</body>
+
+</html>
